@@ -55,3 +55,21 @@ func (s *Siswa) NewSiswaFormat(reqFormat RequestSiswaFormat, userID string) (new
 	err = newSiswa.Validate()
 	return
 }
+
+var ColumnMappSiswa = map[string]interface{}{
+	"id":        "id",
+	"nama":      "nama",
+	"kelas":     "kelas",
+	"createdBy": "created_by",
+	"createdAt": "created_at",
+	"updatedBy": "updated_by",
+	"updatedAt": "updated_at",
+	"isDeleted": "is_deleted",
+}
+
+func (siswa *Siswa) SoftDelete(userId string) {
+	now := time.Now()
+	siswa.IsDeleted = true
+	siswa.UpdatedBy = &userId
+	siswa.UpdatedAt = &now
+}
