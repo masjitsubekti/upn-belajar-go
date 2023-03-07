@@ -12,6 +12,7 @@ type DomainHandlers struct {
 	JenisMitraHandler handlers.JenisMitraHandler
 	SiswaHandler      handlers.SiswaHandler
 	KelasHandler      handlers.KelasHandler
+	KelasSiswaHandler handlers.KelasSiswaHandler
 }
 
 // Router is the router struct containing handlers.
@@ -34,5 +35,6 @@ func (r *Router) SetupRoutes(mux *chi.Mux) {
 		r.DomainHandlers.JenisMitraHandler.Router(rc, r.JwtMiddleware)
 		r.DomainHandlers.SiswaHandler.Router(rc, r.JwtMiddleware)
 		r.DomainHandlers.KelasHandler.Router(rc, r.JwtMiddleware)
+		r.DomainHandlers.KelasSiswaHandler.Router(rc, r.JwtMiddleware)
 	})
 }

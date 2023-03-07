@@ -41,6 +41,13 @@ var domainMaster = wire.NewSet(
 	master.ProvideSiswaRepositoryPostgreSQL,
 	wire.Bind(new(master.SiswaRepository), new(*master.SiswaRepositoryPostgreSQL)),
 
+	// KelasSiswaService interface and implementation
+	master.ProvideKelasSiswaServiceImpl,
+	wire.Bind(new(master.KelasSiswaService), new(*master.KelasSiswaServiceImpl)),
+	// KelasSiswaRepository interface and implementation
+	master.ProvideKelasSiswaRepositoryPostgreSQL,
+	wire.Bind(new(master.KelasSiswaRepository), new(*master.KelasSiswaRepositoryPostgreSQL)),
+
 	// KelasService interface and implementation
 	orm.ProvideKelasServiceImpl,
 	wire.Bind(new(orm.KelasService), new(*orm.KelasServiceImpl)),
@@ -57,6 +64,7 @@ var routing = wire.NewSet(
 	handlers.ProvideJenisMitraHandler,
 	handlers.ProvideSiswaHandler,
 	handlers.ProvideKelasHandler,
+	handlers.ProvideKelasSiswaHandler,
 	// jwt
 	middleware.ProvideJWTMiddleware,
 	router.ProvideRouter,
